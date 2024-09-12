@@ -67,10 +67,10 @@ This project demonstrates how to create a simple AI chatbot using Python, the la
 ## Project Structure
 
 ```
-/openai-flask-starter
-│
+.
 ├── templates/
 │   └── index.html        # Frontend HTML for interacting with the chatbot
+├── .env.sample           # Environment variables
 ├── Pipfile               # Pipenv configuration file for project dependencies
 ├── Pipfile.lock          # Pipenv lock file for reproducible environments
 ├── app.py                # Flask server and chatbot logic
