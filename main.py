@@ -1,14 +1,16 @@
 import os
-import openai
+from openai import OpenAI
 from flask import Flask, jsonify, render_template, request
 from dotenv import load_dotenv
 
 load_dotenv()
 
+client = OpenAI()
+
 app = Flask(__name__)
 
 def ai_bot_response(prompt):
-    response = openai.ChatCompletion.create(
+    response = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
             {"role": "system", "content": "You are a helpful assistant."},
@@ -17,7 +19,7 @@ def ai_bot_response(prompt):
         max_tokens=100,
         temperature=0.7,
     )
-    return response["choices"][0]["message"]["content"].strip()
+    return response.choices[0].message.content.strip()
 
 
 @app.route("/")

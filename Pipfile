@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-openai = "==0.28"
+openai = "==1.44.1"
 flask = "==3.0.3"
 python-dotenv = "==1.0.1"
 
