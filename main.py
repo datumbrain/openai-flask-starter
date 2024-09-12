@@ -1,13 +1,12 @@
 import os
-from openai import OpenAI
-from flask import Flask, jsonify, render_template, request
-from dotenv import load_dotenv
 
-load_dotenv()
+from flask import Flask, jsonify, render_template, request
+from openai import OpenAI
 
 client = OpenAI()
 
 app = Flask(__name__)
+
 
 def ai_bot_response(prompt):
     response = client.chat.completions.create(
@@ -30,10 +29,10 @@ def home():
 @app.route("/get_response", methods=["POST"])
 def get_response():
     data = request.json
-    user_input = data.get("user_input") 
+    user_input = data.get("user_input")
     bot_response = ai_bot_response(user_input)
     return jsonify({"response": bot_response})
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=os.getenv("HTTP_PORT", 5899))
+    app.run(debug=True, port=os.getenv("HTTP_PORT", 5000))

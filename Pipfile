@@ -6,7 +6,8 @@ name = "pypi"
 [packages]
 openai = "==1.44.1"
 flask = "==3.0.3"
-python-dotenv = "==1.0.1"
+flask-script = "*"
+gunicorn = "*"
 
 [dev-packages]
 
