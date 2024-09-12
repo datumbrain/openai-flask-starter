@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Bot</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles/custom.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/biings-ds@1.60.8/build/bds.css"
+    />
+  </head>
+  <body class="ready sticky">
+    <main>
+      <section class="content">
+        <div class="container is-max-desktop">
+          <h1 class="title is-family-secondary is-size-2-mobile">
+            OpenAI Flask Starter
+          </h1>
+          <p class="subtitle is-family-secondary is-size-5-mobile">
+            A simple starter project to build a chatbot using OpenAI and Flask. Developed by <a href="https://dbr.ai">dbr.ai</a>.
+          </p>
+          <br />
+          <form
+            class="box is-raised has-background-white-bis is-large is-marginless"
+          >
+            <div class="columns is-gapless is-multiline">
+              <div class="column is-12">
+                <div class="field">
+                  <label for="compact1" class="label"
+                    >Ask the bot anything you want.</label
+                  >
+                  <input
+                    id="user-input"
+                    class="input is-primary"
+                    type="text"
+                    placeholder="Type your message here"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <button class="button is-primary" onclick="getBotResponse()">
+              Send
+            </button>
+          </form>
+
+          <div id="response-box"></div>
+        </div>
+      </section>
+    </main>
+    <script>
+      function getBotResponse() {
+        const userInput = document.getElementById("user-input").value;
+        fetch("/get_response", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ user_input: userInput }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            document.getElementById("response-box").innerHTML = data.response;
+          });
+      }
+    </script>
+  </body>
+</html>
